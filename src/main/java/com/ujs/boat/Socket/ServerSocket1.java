@@ -28,8 +28,8 @@ public class ServerSocket1 {
                 SocketUser user = new SocketUser("user" + count,socket);
                 System.out.println(user.getName() + "正在登录。。。");
                 list.add(user);//把新增的用户添加到list里面
-                System.out.println(list);
-                System.out.println("客户端的IP："+socket.getInetAddress().getHostAddress());
+                //System.out.println(list);
+                //System.out.println("客户端的IP："+socket.getInetAddress().getHostAddress());
                 new ServerThread2(user,list).start();//开启输入和输出的多线程
             }
         }catch (IOException exception){

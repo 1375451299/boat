@@ -19,11 +19,8 @@ public class ServerThread2 extends  Thread {
 
     UserService userService = (UserService) SpringUtil.getBean(UserService.class);
 
-
     private SocketUser user;
     private List<SocketUser> list;
-    @Resource(name = "serverSocket1")
-    private ServerSocket1 serverSocket1;
 
 
     public ServerThread2(SocketUser user, List<SocketUser> list) {
@@ -51,24 +48,22 @@ public class ServerThread2 extends  Thread {
                 catch (Exception e){
                     e.printStackTrace();
                 }
-
-               // sendToClient(str[1], msg);
                 //转发消息
-                switch (str[0]) {
-                    case "remove":
-                        remove(user);// 移除用户，此处仅仅只是从list中移除用户
-                        break;
-                    case "chat":
-                        // 转发信息给特定的用户，单发或群发
-                        for (int a=1;a<=i-3;a++) {
-                            sendToClient(str[a], msg);
-                        }
-                        break;
-                    case "add":
-                        addUser(user);//添加用户，此处仅仅是list中添加用户
-                    default:
-                        break;
-                }
+//                switch (str[0]) {
+//                    case "remove":
+//                        remove(user);// 移除用户，此处仅仅只是从list中移除用户
+//                        break;
+//                    case "chat":
+//                        // 转发信息给特定的用户，单发或群发
+//                        for (int a=1;a<=i-3;a++) {
+//                            sendToClient(str[a], msg);
+//                        }
+//                        break;
+//                    case "add":
+//                        addUser(user);//添加用户，此处仅仅是list中添加用户
+//                    default:
+//                        break;
+//                }
             }
         } catch (Exception e) {
             System.out.println("用户断开连接");
