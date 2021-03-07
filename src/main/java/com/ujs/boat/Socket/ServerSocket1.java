@@ -41,9 +41,8 @@ public class ServerSocket1 {
             System.out.println(user.toString());
             if (user.getName().equals(username)){
                 try {
-                    user.setName("Asdasd");
                     PrintWriter pw =user.getPw();
-                    pw.println("测试stop");
+                    pw.println("AAA000101");
                     pw.flush();
                     System.out.println("消息转发成功！");
                 } catch (Exception e) {
@@ -52,14 +51,9 @@ public class ServerSocket1 {
 
             }
         }
-
         return "成功";
     }
-    public List<SocketUser> setname(String sss){
-        for (SocketUser user : list) {
-            user.setName("Asdasd");
-        }
-        return list;
-    }
+
+
 
 }

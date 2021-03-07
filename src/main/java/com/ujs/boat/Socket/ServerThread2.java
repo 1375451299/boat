@@ -40,6 +40,7 @@ public class ServerThread2 extends  Thread {
                 String msg = user.getBr().readLine();
                 System.out.println(msg);
                 String[] str = msg.split(",");
+                setname(user,"sss");
                 int i=str.length;
                 System.out.println(i);
                 try {
@@ -70,7 +71,8 @@ public class ServerThread2 extends  Thread {
                 }
             }
         } catch (Exception e) {
-            System.out.println("消息回复异常");
+            System.out.println("用户断开连接");
+            remove(user);
         } finally {
             try {
                 user.getBr().close();
@@ -107,5 +109,16 @@ public class ServerThread2 extends  Thread {
     private void remove(SocketUser user2) {
         list.remove(user2);
         System.out.println(list);
+    }
+
+    private void setname(SocketUser user,String name){
+
+        for (SocketUser users : list) {
+            if (users.getName()==user.getName()){
+                user.setName(name);
+                list.remove(users);
+                list.add(user);
+            }
+        }
     }
 }
