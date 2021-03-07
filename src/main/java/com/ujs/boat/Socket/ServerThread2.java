@@ -1,14 +1,30 @@
-package com.ujs.boat.Service;
+package com.ujs.boat.Socket;
 
+import com.ujs.boat.Enity.Msg;
 import com.ujs.boat.Enity.SocketUser;
+import com.ujs.boat.Enity.User;
+import com.ujs.boat.Service.UserService;
+import com.ujs.boat.common.SpringUtil;
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+
 public class ServerThread2 extends  Thread {
+
+    UserService userService = (UserService) SpringUtil.getBean(UserService.class);
+
+
     private SocketUser user;
     private List<SocketUser> list;
+    @Resource(name = "serverSocket1")
+    private ServerSocket1 serverSocket1;
+
 
     public ServerThread2(SocketUser user, List<SocketUser> list) {
         this.user = user;
@@ -20,12 +36,21 @@ public class ServerThread2 extends  Thread {
             while (true) {
                 // 信息的格式：(add||remove||chat),收件人,...,收件人,发件人,信息体
                 //不断地读取客户端发过来的信息
+                Msg rec=new Msg();
                 String msg = user.getBr().readLine();
                 System.out.println(msg);
                 String[] str = msg.split(",");
-                int s=1;
                 int i=str.length;
                 System.out.println(i);
+                try {
+                    User users = new User();
+                    users.setOpenId("sss");
+                    userService.insert(users);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+
                // sendToClient(str[1], msg);
                 //转发消息
                 switch (str[0]) {
