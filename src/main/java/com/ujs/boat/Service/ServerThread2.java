@@ -23,6 +23,7 @@ public class ServerThread2 extends  Thread {
                 String msg = user.getBr().readLine();
                 System.out.println(msg);
                 String[] str = msg.split(",");
+                int s=1;
                 int i=str.length;
                 System.out.println(i);
                // sendToClient(str[1], msg);
