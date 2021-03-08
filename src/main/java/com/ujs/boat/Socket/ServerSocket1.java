@@ -1,7 +1,10 @@
 package com.ujs.boat.Socket;
 
+import com.ujs.boat.Enity.Log;
 import com.ujs.boat.Enity.SocketUser;
-import com.ujs.boat.Socket.ServerThread2;
+import com.ujs.boat.Service.LogService;
+import com.ujs.boat.common.SpringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -9,11 +12,15 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Component("serverSocket1")
 public class ServerSocket1 {
 
+    //LogService logService = (LogService) SpringUtil.getBean(LogService.class);
+    @Autowired
+    LogService logService;
     private ServerSocket serverSocket;
     private  List<SocketUser> list = new ArrayList<SocketUser>();
     public void ServerSocketDemo(){
@@ -44,6 +51,13 @@ public class ServerSocket1 {
                     PrintWriter pw =user.getPw();
                     pw.println("AAA000101");
                     pw.flush();
+
+                    Log log =new Log();
+                    log.setDevice_name(username);
+                    log.setInstruction("AAA000101");
+                    log.setTime(new Date());
+                    logService.insert(log);
+
                     System.out.println("消息转发成功！");
                 } catch (Exception e) {
                     e.printStackTrace();
