@@ -18,7 +18,6 @@ import java.util.List;
 @Component("serverSocket1")
 public class ServerSocket1 {
 
-    //LogService logService = (LogService) SpringUtil.getBean(LogService.class);
     @Autowired
     LogService logService;
     private ServerSocket serverSocket;
@@ -43,7 +42,10 @@ public class ServerSocket1 {
             exception.printStackTrace();
         }
     }
-    public String stop(String username){
+    /**
+     * 停船指令
+     */
+    public void stop(String username){
         for (SocketUser user : list) {
             System.out.println(user.toString());
             if (user.getName().equals(username)){
@@ -57,7 +59,6 @@ public class ServerSocket1 {
                     log.setInstruction("AAA000101");
                     log.setTime(new Date());
                     logService.insert(log);
-
                     System.out.println("消息转发成功！");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -65,9 +66,77 @@ public class ServerSocket1 {
 
             }
         }
-        return "成功";
     }
+    /**
+     * 手动控制指令
+     */
+    public void Manual_control(String username){
+    }
+    /**
+     * 自动控制指令
+     */
+    public void Automatic_control(){
 
+    }
+    /**
+     * 投饵续航指令
+     */
+    public void Baiting_endurance(String username){
 
+    }
+    /**
+     * 	施药巡航指令
+     */
+    public void Spraying_Cruise(String username){
+
+    }
+    /**
+     * 	施药续航指令
+     */
+    public void Application_duration(String username){
+
+    }
+    /**
+     * 	巡航暂停指令
+     */
+    public void Cruise_pause(String username){
+
+    }
+    /**
+     * 	返航指令
+     */
+    public void Return(String username){
+
+    }
+    /**
+     * 	投饵巡航指令
+     */
+    public void Feeding_Cruise(String username){
+
+    }
+    /**
+     * 	原点校准指令
+     */
+    public void Origin_calibration(String username){
+
+    }
+    /**
+     * 	地磁校准指令
+     */
+    public void Geomagnetic_calibration(String username){
+
+    }
+    /**
+     * 	地图下载指令
+     */
+    public void Map_download(){
+
+    }
+    /**
+     * 	差分数据服务帐号密码下载指令
+     */
+    public void download(){
+
+    }
 
 }
