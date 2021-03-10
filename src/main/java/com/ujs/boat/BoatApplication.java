@@ -8,8 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.scheduling.annotation.EnableScheduling;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+@EnableScheduling
 @MapperScan(value="com.ujs.boat.Mapper")
 @EnableSwagger2
 @SpringBootApplication

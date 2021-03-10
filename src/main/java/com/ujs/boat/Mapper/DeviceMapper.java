@@ -28,4 +28,8 @@ public interface DeviceMapper {
 
     @Select("SELECT * FROM device WHERE device_name = #{id}")
     Device selectById(@Param("id") String id);
+
+    @Update("UPDATE device SET status =#{status}")
+    void change_time(@Param("status") String status);
+
 }

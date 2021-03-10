@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 public class LogService {
     @Autowired
     LogMapper logMapper;
-
+    /**
+     * 指令日志
+     */
     public void insert(Log log){
         logMapper.insert(log);
     }

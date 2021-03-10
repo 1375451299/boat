@@ -13,13 +13,13 @@ import java.util.Date;
 @Mapper
 public interface UserMapper {
 
-    @Select("SELECT * FROM wechat_user WHERE OPENID = #{openid}")
-    User selectById(@Param("openid") String openid);
+    @Select("SELECT * FROM user WHERE Id = #{id}")
+    User selectById(@Param("id") String id);
 
-    @Insert("INSERT INTO user(name) VALUES(#{openId})")
+    @Insert("INSERT INTO user(user_name,age,sex,createTime,lastVisitTime,Id,password) VALUES(#{user_name},#{age},#{sex},#{createTime},#{lastVisitTime},#{Id},#{password})")
     void insert(User user);
 
-    @Update("UPDATE wechat_user SET LASTVISITTIME =#{lastVisitTime}WHERE OPENID= #{openid}")
-    void  updateById(@Param("openid") String openid,@Param("lastVisitTime") Date lastVisitTime);
+    @Update("UPDATE user SET LASTVISITTIME =#{lastVisitTime}WHERE Id= #{id}")
+    void  updateTime(@Param("id") String id,@Param("lastVisitTime") Date lastVisitTime);
 
 }

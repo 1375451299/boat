@@ -1,9 +1,10 @@
 package com.ujs.boat.Socket;
 
+import com.ujs.boat.Enity.Insruction.Automatic;
+import com.ujs.boat.Enity.Insruction.Manual;
 import com.ujs.boat.Enity.Log;
 import com.ujs.boat.Enity.SocketUser;
 import com.ujs.boat.Service.LogService;
-import com.ujs.boat.common.SpringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -34,7 +35,7 @@ public class ServerSocket1 {
                 SocketUser user = new SocketUser("user" + count,socket);
                 System.out.println(user.getName() + "正在登录。。。");
                 list.add(user);//把新增的用户添加到list里面
-                //System.out.println(list);
+                System.out.println(list);
                 //System.out.println("客户端的IP："+socket.getInetAddress().getHostAddress());
                 new ServerThread2(user,list).start();//开启输入和输出的多线程
             }
@@ -42,21 +43,21 @@ public class ServerSocket1 {
             exception.printStackTrace();
         }
     }
+
     /**
-     * 停船指令
+     * 发送指令
      */
-    public void stop(String username){
+    private void send(String devicename,String Instruction){
         for (SocketUser user : list) {
-            System.out.println(user.toString());
-            if (user.getName().equals(username)){
+            if (user.getName().equals(devicename)){
                 try {
                     PrintWriter pw =user.getPw();
-                    pw.println("AAA000101");
+                    pw.println(Instruction);
                     pw.flush();
 
                     Log log =new Log();
-                    log.setDevice_name(username);
-                    log.setInstruction("AAA000101");
+                    log.setDevice_name(devicename);
+                    log.setInstruction(Instruction);
                     log.setTime(new Date());
                     logService.insert(log);
                     System.out.println("消息转发成功！");
@@ -68,63 +69,70 @@ public class ServerSocket1 {
         }
     }
     /**
+     * 停船指令
+     */
+    public void stop(String devicename){
+        send(devicename,"AAA0001:01");
+    }
+    /**
      * 手动控制指令
      */
-    public void Manual_control(String username){
+    public void Manual_control(Manual manual){
+        send(manual.getDevice_name(),"AAA0001:02"+","+manual.getLeft_wheel()+","+manual.getRight_wheel()+","+manual.getFeed()+","+manual.getBlanking()+","+manual.getValve()+","+manual.getPump());
     }
     /**
      * 自动控制指令
      */
-    public void Automatic_control(){
-
+    public void Automatic_control(Automatic automatic){
+        send(automatic.getDevice_name(),"AAA0001:03"+","+automatic.getX_coordinate()+","+automatic.getY_coordinate()+","+automatic.getFeed()+","+automatic.getBlanking()+","+automatic.getValve()+","+automatic.getPump());
     }
     /**
      * 投饵续航指令
      */
-    public void Baiting_endurance(String username){
-
+    public void Baiting_endurance(String devicename){
+        send(devicename,"AAA0001:05");
     }
     /**
      * 	施药巡航指令
      */
-    public void Spraying_Cruise(String username){
-
+    public void Spraying_Cruise(String devicename){
+        send(devicename,"AAA0001:06");
     }
     /**
      * 	施药续航指令
      */
-    public void Application_duration(String username){
-
+    public void Application_duration(String devicename){
+        send(devicename,"AAA0001:07");
     }
     /**
      * 	巡航暂停指令
      */
-    public void Cruise_pause(String username){
-
+    public void Cruise_pause(String devicename){
+        send(devicename,"AAA0001:08");
     }
     /**
      * 	返航指令
      */
-    public void Return(String username){
-
+    public void Return(String devicename){
+        send(devicename,"AAA0001:09");
     }
     /**
      * 	投饵巡航指令
      */
-    public void Feeding_Cruise(String username){
-
+    public void Feeding_Cruise(String devicename){
+        send(devicename,"AAA0001:04");
     }
     /**
      * 	原点校准指令
      */
-    public void Origin_calibration(String username){
-
+    public void Origin_calibration(String devicename){
+        send(devicename,"AAA0001:10");
     }
     /**
      * 	地磁校准指令
      */
-    public void Geomagnetic_calibration(String username){
-
+    public void Geomagnetic_calibration(String devicename){
+        send(devicename,"AAA0001:11");
     }
     /**
      * 	地图下载指令
@@ -135,8 +143,10 @@ public class ServerSocket1 {
     /**
      * 	差分数据服务帐号密码下载指令
      */
-    public void download(){
-
+    public void download(String devicename,String account){
+        send(devicename,"AAA0001:13,"+account);
     }
+
+
 
 }

@@ -6,15 +6,26 @@ import java.util.Date;
 
 @Data
 public class User {
-        private static final long serialVersionUID = 1L;
         /**
-         * open_id
+         * 用户昵称
          */
-        private String openId;
+        private String user_name;
         /**
-         * skey
+         * 用户唯一id
          */
-        private String skey;
+        private String Id;
+        /**
+         * 用户密码
+         */
+        private String password;
+        /**
+         * 用户年龄
+         */
+        private String age;
+        /**
+         * 用户性别
+         */
+        private String sex;
         /**
          * 创建时间
          */
@@ -23,128 +34,57 @@ public class User {
          * 最后登录时间
          */
         private Date lastVisitTime;
-        /**
-         * session_key
-         */
-        private String sessionKey;
-        /**
-         * 市
-         */
-        private String city;
-        /**
-         * 省
-         */
-        private String province;
-        /**
-         * 国
-         */
-        private String country;
-        /**
-         * 头像
-         */
-        private String avatarUrl;
-        /**
-         * 性别
-         */
-        private Integer gender;
-        /**
-         * 网名
-         */
-        private String nickName;
+
 
 
     public User() {
     }
 
-        public Date getCreateTime() {
-                return createTime;
-        }
-
-        public Date getLastVisitTime() {
-                return lastVisitTime;
-        }
-
-        public Integer getGender() {
-                return gender;
-        }
-
-        public static long getSerialVersionUID() {
-                return serialVersionUID;
-        }
-
-        public String getAvatarUrl() {
-                return avatarUrl;
-        }
-
-        public String getCity() {
-                return city;
-        }
-
-        public String getCountry() {
-                return country;
-        }
-
-        public String getNickName() {
-                return nickName;
-        }
-
-        public String getOpenId() {
-                return openId;
-        }
-
-        public String getProvince() {
-                return province;
-        }
-
-        public String getSessionKey() {
-                return sessionKey;
-        }
-
-        public String getSkey() {
-                return skey;
-        }
-
-        public void setAvatarUrl(String avatarUrl) {
-                this.avatarUrl = avatarUrl;
-        }
-
-        public void setCity(String city) {
-                this.city = city;
-        }
-
-        public void setCountry(String country) {
-                this.country = country;
-        }
-
-        public void setCreateTime(Date createTime) {
-                this.createTime = createTime;
-        }
-
-        public void setGender(Integer gender) {
-                this.gender = gender;
+        public void setUser_name(String user_name) {
+                this.user_name = user_name;
         }
 
         public void setLastVisitTime(Date lastVisitTime) {
                 this.lastVisitTime = lastVisitTime;
         }
 
-        public void setNickName(String nickName) {
-                this.nickName = nickName;
+        public String getUser_name() {
+                return user_name;
         }
 
-        public void setOpenId(String openId) {
-                this.openId = openId;
+        public void setCreateTime(Date createTime) {
+                this.createTime = createTime;
         }
 
-        public void setProvince(String province) {
-                this.province = province;
+        public Date getLastVisitTime() {
+                return lastVisitTime;
         }
 
-        public void setSessionKey(String sessionKey) {
-                this.sessionKey = sessionKey;
+        public Date getCreateTime() {
+                return createTime;
         }
 
-    public void setSkey(String skey) {
-        this.skey = skey;
-    }
+        public void setId(String id) {
+                Id = id;
+        }
+
+        public String getId() {
+                return Id;
+        }
+
+        public String getAge() {
+                return age;
+        }
+
+        public String getSex() {
+                return sex;
+        }
+
+        public void setAge(String age) {
+                this.age = age;
+        }
+
+        public void setSex(String sex) {
+                this.sex = sex;
+        }
 }

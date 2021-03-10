@@ -5,10 +5,13 @@ package com.ujs.boat.Controller;
  * @author ：zlf
  * @since ：Created in 2021/3/7
  */
+import com.ujs.boat.Enity.Insruction.Automatic;
+import com.ujs.boat.Enity.Insruction.Manual;
 import com.ujs.boat.Socket.ServerSocket1;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -19,6 +22,7 @@ import javax.annotation.Resource;
 public class InstructionController {
     @Resource(name = "serverSocket1")
     private  ServerSocket1 serverSocket1;
+
 
     @PostMapping("/boat/stop")
     @ApiOperation(value = "停车指令", notes = "根据设备的id来执行停车指令")
@@ -72,5 +76,23 @@ public class InstructionController {
     @ApiOperation(value = "地磁校准指令", notes = "根据设备的id来执行地磁校准指令")
     public void Geomagnetic_calibration(String deviceName) {
         serverSocket1.Geomagnetic_calibration(deviceName);
+    }
+
+    @PostMapping("/boat/Manual_control")
+    @ApiOperation(value = "手动控制指令", notes = "根据设备的id来执行手动控制指令")
+    public void Manual_control(@RequestBody Manual manual) {
+        serverSocket1.Manual_control(manual);
+    }
+
+    @PostMapping("/boat/Automatic_control")
+    @ApiOperation(value = "自动控制指令", notes = "根据设备的id来执行自动控制指令")
+    public void Automatic_control(@RequestBody Automatic automatic) {
+        serverSocket1.Automatic_control(automatic);
+    }
+
+    @PostMapping("/boat/download")
+    @ApiOperation(value = "差分数据下载指令", notes = "根据差分数据服务帐号密码下载指令")
+    public void download(String devicename,String account) {
+        serverSocket1.download(devicename,account);
     }
 }

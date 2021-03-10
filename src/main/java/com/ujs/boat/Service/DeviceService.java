@@ -13,7 +13,9 @@ import java.util.Date;
 public class DeviceService {
     @Autowired
     DeviceMapper deviceMapper;
-
+    /**
+     * 添加设备
+     */
     public void insert(Device device){
         deviceMapper.insert(device);
     }
@@ -21,14 +23,26 @@ public class DeviceService {
         Device device=deviceMapper.check_status(id);
         return device.getStatus();
     }
+    /**
+     * 绑定设备主人
+     */
     public void addUser(String id,String username){
         deviceMapper.addUser(id,username);
     }
     public void Updatetime(String id, Date time){
         deviceMapper.updateTime(id,time);
     }
+    /**
+     * 查看设备信息
+     */
     public Device selectById(String id){
         Device device=deviceMapper.selectById(id);
         return device;
+    }
+    /**
+     * 设备状态修改
+     */
+    public void Change_time(String status){
+        deviceMapper.change_time(status);
     }
 }
