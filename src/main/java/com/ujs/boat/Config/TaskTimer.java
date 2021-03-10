@@ -14,9 +14,9 @@ public class TaskTimer {
     @Autowired
     DeviceService deviceService;
 
-    @Scheduled(cron = "0 */5 * * * ?")
+    @Scheduled(cron = "0 */1 * * * ?")
     public void setStatus(){
-        deviceService.Change_time("下线");
+        deviceService.Change_status("下线");
         SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(dateFormat1.format(new Date()));
     }

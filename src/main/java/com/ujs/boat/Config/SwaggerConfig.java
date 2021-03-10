@@ -26,7 +26,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("410-船控器项目")
-                .description("2021.03.07")
+                .description("2021.03.07启动")
                 .termsOfServiceUrl("http://blog.csdn.net/forezp")
                 .version("1.0")
                 .build();

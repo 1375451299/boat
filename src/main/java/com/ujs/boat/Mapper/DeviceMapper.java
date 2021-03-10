@@ -30,6 +30,6 @@ public interface DeviceMapper {
     Device selectById(@Param("id") String id);
 
     @Update("UPDATE device SET status =#{status}")
-    void change_time(@Param("status") String status);
+    void change_status(@Param("status") String status);
 
 }

@@ -33,12 +33,13 @@ public class ServerThread2 extends  Thread {
                 //String string = "AAA0000:003000425850500C20353555,9000.0000000N,18000.0000000E,0000,0000.0000000N,00000.0000000E,800,E000.0,N000.0,225.0,+0.00,+000.0,E000.0,N000.0,E000.0,N000.0,000.0,24.6,00.2,79.1,00000000";
                 Msg rec=new Msg();
                 Device device=new Device();
-                System.out.println(msg);
+                //System.out.println(msg);
                 if (msg.length()==194){
                     rec=data_processing(msg,rec);
                     setname(user,rec.getId());
                     device=deviceService.selectById(rec.getId());
                     if (device!=null){
+                        deviceService.Change_status("上线");
                         deviceService.Updatetime(rec.getId(),new Date());
                     }
                     else{
@@ -51,7 +52,7 @@ public class ServerThread2 extends  Thread {
                     }
                     msgService.insert(rec);
                 }
-                System.out.println("消息接收完成");
+                //System.out.println("消息接收完成");
             }
         } catch (Exception e) {
             System.out.println("用户断开连接");

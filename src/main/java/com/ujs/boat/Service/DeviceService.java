@@ -19,6 +19,9 @@ public class DeviceService {
     public void insert(Device device){
         deviceMapper.insert(device);
     }
+    /**
+     * 检查设备状态
+     */
     public String check_status(String id){
         Device device=deviceMapper.check_status(id);
         return device.getStatus();
@@ -42,7 +45,7 @@ public class DeviceService {
     /**
      * 设备状态修改
      */
-    public void Change_time(String status){
-        deviceMapper.change_time(status);
+    public void Change_status(String status){
+        deviceMapper.change_status(status);
     }
 }
