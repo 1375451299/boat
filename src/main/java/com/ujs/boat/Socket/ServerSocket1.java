@@ -22,7 +22,7 @@ public class ServerSocket1 {
     @Autowired
     LogService logService;
     private ServerSocket serverSocket;
-    private  List<SocketUser> list = new ArrayList<SocketUser>();
+    public   List<SocketUser> list = new ArrayList<SocketUser>();
     public void ServerSocketDemo(){
         int count=0;
         try{
@@ -47,14 +47,15 @@ public class ServerSocket1 {
     /**
      * 发送指令
      */
-    private void send(String devicename,String Instruction){
+    private boolean send(String devicename,String Instruction){
+        int flag=0;
         for (SocketUser user : list) {
             if (user.getName().equals(devicename)){
+                flag=1;
                 try {
                     PrintWriter pw =user.getPw();
                     pw.println(Instruction);
                     pw.flush();
-
                     Log log =new Log();
                     log.setDevice_name(devicename);
                     log.setInstruction(Instruction);
@@ -67,6 +68,9 @@ public class ServerSocket1 {
 
             }
         }
+        if (flag==1)
+            return true;
+        else return false;
     }
     /**
      * 停船指令

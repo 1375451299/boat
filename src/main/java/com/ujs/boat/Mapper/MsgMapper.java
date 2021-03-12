@@ -9,6 +9,7 @@ import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component(value ="msgMapper")
 @Mapper
@@ -19,4 +20,8 @@ public interface MsgMapper {
 
     @Select("SELECT * FROM msg WHERE id,time = #{id},#{time}")
     Msg retrieval(@Param("id") String id,@Param("time") Date time);
+
+    @Select("SELECT * FROM msg LIMIT #{start},#{end}")
+    List<Msg> rec_msg(@Param("start") int start, @Param("end") int end);
+
 }

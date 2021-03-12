@@ -9,6 +9,7 @@ import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component(value ="deviceMapper")
 @Mapper
@@ -32,4 +33,6 @@ public interface DeviceMapper {
     @Update("UPDATE device SET status =#{status}")
     void change_status(@Param("status") String status);
 
+    @Select("SELECT * FROM device LIMIT #{start},#{end}")
+    List<Device> getDevice(@Param("start") int start, @Param("end") int end);
 }

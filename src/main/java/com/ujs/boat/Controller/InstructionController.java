@@ -10,6 +10,7 @@ import com.ujs.boat.Enity.Insruction.Manual;
 import com.ujs.boat.Socket.ServerSocket1;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,7 @@ import javax.annotation.Resource;
 
 @Api(tags = "控制船")
 @RestController
+@CrossOrigin
 public class InstructionController {
     @Resource(name = "serverSocket1")
     private  ServerSocket1 serverSocket1;

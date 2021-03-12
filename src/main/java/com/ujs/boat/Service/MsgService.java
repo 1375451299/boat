@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class MsgService {
@@ -20,11 +21,19 @@ public class MsgService {
         msgMapper.insert(msg);
     }
     /**
-     * 查看信息
+     * 查看指定时间信息
      */
     public Msg retrieval(String id, Date time){
         Msg msg=new Msg();
         msg=msgMapper.retrieval(id,time);
+        return msg;
+    }
+    /**
+     * 查看指定区间的信息
+     */
+    public List<Msg> rec_msg(int start, int end){
+        List<Msg> msg;
+        msg=msgMapper.rec_msg(start,end);
         return msg;
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class DeviceService {
@@ -32,6 +33,9 @@ public class DeviceService {
     public void addUser(String id,String username){
         deviceMapper.addUser(id,username);
     }
+    /**
+     * 记录上线时间
+     */
     public void Updatetime(String id, Date time){
         deviceMapper.updateTime(id,time);
     }
@@ -47,5 +51,11 @@ public class DeviceService {
      */
     public void Change_status(String status){
         deviceMapper.change_status(status);
+    }
+    /**
+     * 获取所有设备信息
+     */
+    public List<Device> devices(int start,int end){
+        return  deviceMapper.getDevice(start,end);
     }
 }
