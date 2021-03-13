@@ -1,6 +1,7 @@
 package com.ujs.boat.Controller;
 
 import com.ujs.boat.Enity.Device;
+import com.ujs.boat.Enity.Insruction.Times;
 import com.ujs.boat.Enity.Log;
 import com.ujs.boat.Enity.Msg;
 import com.ujs.boat.Enity.User;
@@ -130,6 +131,23 @@ public class SystemController {
     public GlobalResult msg_num_today() {
         int num =msgService.msg_num_today();
         GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
+        return result;
+    }
+
+
+    @GetMapping("/system/log_num_detail")
+    @ApiOperation(value = "查询今天下行数据详细信息数量", notes = "查询今日下行信息详细长度")
+    public GlobalResult log_num_detail() {
+        List<Times> times =logService.log_num_datail();
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", times);
+        return result;
+    }
+
+    @GetMapping("/system/msg_num_detail")
+    @ApiOperation(value = "查询今天上行数据详细信息数量", notes = "查询今日上行信息详细长度")
+    public GlobalResult msg_num_detail() {
+        List<Times> times =msgService.msg_num_detail();
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", times);
         return result;
     }
 }

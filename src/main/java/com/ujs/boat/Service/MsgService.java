@@ -1,5 +1,6 @@
 package com.ujs.boat.Service;
 
+import com.ujs.boat.Enity.Insruction.Times;
 import com.ujs.boat.Enity.Msg;
 import com.ujs.boat.Enity.User;
 import com.ujs.boat.Mapper.MsgMapper;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
 
 @Service
 public class MsgService {
@@ -53,5 +55,15 @@ public class MsgService {
         String start=" 00:00:00";
         String end=" 23:59:59";
         return msgMapper.getMsg_today(time+start,time+end);
+    }
+    /**
+     * 获取今天数据分区段详细数量
+     */
+    public List<Times> msg_num_detail(){
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        String time=dateFormat1.format(new Date());
+        String start=" 00:00:00";
+        String end=" 23:59:59";
+        return msgMapper.msg_num_detail(time+start,time+end);
     }
 }

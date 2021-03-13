@@ -1,6 +1,7 @@
 package com.ujs.boat.Mapper;
 
 import com.ujs.boat.Enity.Device;
+import com.ujs.boat.Enity.Insruction.Times;
 import com.ujs.boat.Enity.Msg;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
@@ -29,4 +30,7 @@ public interface MsgMapper {
 
     @Select("SELECT count(1) FROM msg where time BETWEEN #{start} and #{end}  ")
     int getMsg_today(@Param("start") String start, @Param("end") String end);
+
+    @Select("SELECT DATE_FORMAT(time, '%Y-%m-%d %H:00:00') AS times, COUNT(*) AS num FROM msg where time BETWEEN #{start} and #{end} GROUP BY times ORDER BY times")
+    List<Times> msg_num_detail(@Param("start") String start, @Param("end") String end);
 }
