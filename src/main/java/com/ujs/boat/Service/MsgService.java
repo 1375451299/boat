@@ -6,6 +6,7 @@ import com.ujs.boat.Mapper.MsgMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class MsgService {
         msgMapper.insert(msg);
     }
     /**
-     * 查看指定时间信息
+     * 查看指定时间信息（用于查看当前设备信息）
      */
-    public Msg retrieval(String id, Date time){
+    public Msg retrieval(String id, String time){
         Msg msg=new Msg();
         msg=msgMapper.retrieval(id,time);
         return msg;
@@ -41,5 +42,16 @@ public class MsgService {
      */
     public int msg_num(){
         return msgMapper.msg_num();
+    }
+
+    /**
+     * 获取今天数据的数量
+     */
+    public int msg_num_today(){
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        String time=dateFormat1.format(new Date());
+        String start=" 00:00:00";
+        String end=" 23:59:59";
+        return msgMapper.getMsg_today(time+start,time+end);
     }
 }

@@ -22,7 +22,13 @@ public interface UserMapper {
     void insert(User user);
 
     @Update("UPDATE user SET LASTVISITTIME =#{lastVisitTime}WHERE Id= #{id}")
-    void  updateTime(@Param("id") String id,@Param("lastVisitTime") Date lastVisitTime);
+    void  updateTime(@Param("id") String id,@Param("lastVisitTime") String lastVisitTime);
+
+    @Update("UPDATE user SET status =#{status}")
+    void change_status(@Param("status") String status);
+
+    @Update("UPDATE user SET status =#{status}  WHERE user_name = #{id}")
+    void update_status(@Param("status") String status,@Param("id") String id);
 
     @Select("SELECT * FROM user LIMIT #{start},#{limit}")
     List<User> user(@Param("start") int start, @Param("limit") int limit);
@@ -30,4 +36,6 @@ public interface UserMapper {
     @Select("SELECT count(1) FROM user")
     int user_num();
 
+    @Select("SELECT count(1) FROM user WHERE status =#{status}")
+    int num_on(@Param("status") String status);
 }

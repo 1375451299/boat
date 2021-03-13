@@ -8,14 +8,15 @@ import com.ujs.boat.common.SpringUtil;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 
 public class ServerThread2 extends  Thread {
 
-    MsgService msgService = (MsgService) SpringUtil.getBean(MsgService.class);
-    DeviceService deviceService = (DeviceService) SpringUtil.getBean(DeviceService.class);
+    MsgService msgService = SpringUtil.getBean(MsgService.class);
+    DeviceService deviceService = SpringUtil.getBean(DeviceService.class);
     private SocketUser user;
     private List<SocketUser> list;
 
@@ -39,14 +40,18 @@ public class ServerThread2 extends  Thread {
                     setname(user,rec.getId());
                     device=deviceService.selectById(rec.getId());
                     if (device!=null){
-                        deviceService.Change_status("上线");
-                        deviceService.Updatetime(rec.getId(),new Date());
+                        deviceService.update_status("上线",device.getDevice_name());
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String time=dateFormat1.format(new Date());
+                        deviceService.Updatetime(rec.getId(),time);
                     }
                     else{
                         Device creat=new Device();
                         creat.setDevice_name(rec.getId());
-                        creat.setCreateTime(new Date());
-                        creat.setLastVisitTime(new Date());
+                        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        String time=dateFormat1.format(new Date());
+                        creat.setCreateTime(time);
+                        creat.setLastVisitTime(time);
                         creat.setStatus("上线");
                         deviceService.insert(creat);
                     }
@@ -155,7 +160,9 @@ public class ServerThread2 extends  Thread {
         msg.setCurrent(result1[19]);
         msg.setQuantity(result1[20]);
         msg.setCheck_code(result1[21]);
-        msg.setTime(new Date());
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String time=dateFormat1.format(new Date());
+        msg.setTime(time);
         return msg;
     }
 }

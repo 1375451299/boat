@@ -6,6 +6,8 @@ import com.ujs.boat.Mapper.LogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -29,5 +31,15 @@ public class LogService {
      */
     public int log_num(){
         return logMapper.log_num();
+    }
+    /**
+     * 获取今天日志的数量
+     */
+    public int log_num_today(){
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd");
+        String time=dateFormat1.format(new Date());
+        String start=" 00:00:00";
+        String end=" 23:59:59";
+        return logMapper.getLog_today(time+start,time+end);
     }
 }

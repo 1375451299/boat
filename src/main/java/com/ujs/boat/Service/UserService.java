@@ -36,7 +36,7 @@ public class UserService {
     /**
      * 更改用户登录时间
      */
-    public void updateTime(String id, Date time){
+    public void updateTime(String id, String time){
         userMapper.updateTime(id,time);
     }
     /**
@@ -50,5 +50,23 @@ public class UserService {
      */
     public int user_num(){
         return userMapper.user_num();
+    }
+    /**
+     * 获取在线用户的数量
+     */
+    public int num_on(){
+        return userMapper.num_on("上线");
+    }
+    /**
+     * 全部用户状态修改
+     */
+    public void Change_status(String status){
+        userMapper.change_status(status);
+    }
+    /**
+     * 单个用户状态修改
+     */
+    public void update_status(String status,String id){
+        userMapper.update_status(status,id);
     }
 }

@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Api(tags = "用户操作")
@@ -23,7 +24,9 @@ public class UserController {
         User ret_user=new User();
         ret_user=userService.selectById(user.getId());
         if (ret_user==null){
-            user.setCreateTime(new Date());
+            SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            String time=dateFormat1.format(new Date());
+            user.setCreateTime(time);
             userService.insert(user);
             GlobalResult result = GlobalResult.build(200, "用户创建成功", null);
             return result;
@@ -45,7 +48,10 @@ public class UserController {
         }
         else{
             if (ret_user.getPassword().equals(password)) {
-                userService.updateTime(id,new Date());
+                SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                String time=dateFormat1.format(new Date());
+                userService.update_status("上线",id);
+                userService.updateTime(id,time);
                 GlobalResult result = GlobalResult.build(200, "用户登录成功", null);
                 return result;
             }

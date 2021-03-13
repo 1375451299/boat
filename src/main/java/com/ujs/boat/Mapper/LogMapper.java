@@ -22,4 +22,7 @@ public interface LogMapper {
 
     @Select("SELECT count(1) FROM log")
     int log_num();
+
+    @Select("SELECT count(1) FROM log where time BETWEEN #{start} and #{end}  ")
+    int getLog_today(@Param("start") String start, @Param("end") String end);
 }

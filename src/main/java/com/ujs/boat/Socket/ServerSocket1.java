@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -59,7 +60,9 @@ public class ServerSocket1 {
                     Log log =new Log();
                     log.setDevice_name(devicename);
                     log.setInstruction(Instruction);
-                    log.setTime(new Date());
+                    SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                    String time=dateFormat1.format(new Date());
+                    log.setTime(time);
                     logService.insert(log);
                     System.out.println("消息转发成功！");
                 } catch (Exception e) {

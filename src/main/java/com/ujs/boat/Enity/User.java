@@ -29,62 +29,18 @@ public class User {
         /**
          * 创建时间
          */
-        private Date createTime;
+        private String createTime;
         /**
          * 最后登录时间
          */
-        private Date lastVisitTime;
-
+        private String lastVisitTime;
+        /**
+         * 用户登录状态
+         */
+        private String status;
 
 
     public User() {
     }
 
-        public void setUser_name(String user_name) {
-                this.user_name = user_name;
-        }
-
-        public void setLastVisitTime(Date lastVisitTime) {
-                this.lastVisitTime = lastVisitTime;
-        }
-
-        public String getUser_name() {
-                return user_name;
-        }
-
-        public void setCreateTime(Date createTime) {
-                this.createTime = createTime;
-        }
-
-        public Date getLastVisitTime() {
-                return lastVisitTime;
-        }
-
-        public Date getCreateTime() {
-                return createTime;
-        }
-
-        public void setId(String id) {
-                Id = id;
-        }
-
-        public String getId() {
-                return Id;
-        }
-
-        public String getAge() {
-                return age;
-        }
-
-        public String getSex() {
-                return sex;
-        }
-
-        public void setAge(String age) {
-                this.age = age;
-        }
-
-        public void setSex(String sex) {
-                this.sex = sex;
-        }
 }

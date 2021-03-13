@@ -19,11 +19,14 @@ public interface MsgMapper {
     void insert(Msg msg);
 
     @Select("SELECT * FROM msg WHERE id,time = #{id},#{time}")
-    Msg retrieval(@Param("id") String id,@Param("time") Date time);
+    Msg retrieval(@Param("id") String id,@Param("time") String time);
 
     @Select("SELECT * FROM msg LIMIT #{start},#{limit}")
     List<Msg> rec_msg(@Param("start") int start, @Param("limit") int limit);
 
     @Select("SELECT count(1) FROM msg")
     int msg_num();
+
+    @Select("SELECT count(1) FROM msg where time BETWEEN #{start} and #{end}  ")
+    int getMsg_today(@Param("start") String start, @Param("end") String end);
 }

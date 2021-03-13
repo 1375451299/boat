@@ -36,7 +36,7 @@ public class DeviceService {
     /**
      * 记录上线时间
      */
-    public void Updatetime(String id, Date time){
+    public void Updatetime(String id, String time){
         deviceMapper.updateTime(id,time);
     }
     /**
@@ -47,10 +47,16 @@ public class DeviceService {
         return device;
     }
     /**
-     * 设备状态修改
+     * 全部设备状态修改
      */
     public void Change_status(String status){
         deviceMapper.change_status(status);
+    }
+    /**
+     * 单个设备状态修改
+     */
+    public void update_status(String status,String id){
+        deviceMapper.update_status(status,id);
     }
     /**
      * 获取所有设备信息
@@ -63,5 +69,11 @@ public class DeviceService {
      */
     public int device_num(){
         return deviceMapper.device_num();
+    }
+    /**
+     * 获取在线船只的数量
+     */
+    public int num_on(){
+        return deviceMapper.num_on("上线");
     }
 }

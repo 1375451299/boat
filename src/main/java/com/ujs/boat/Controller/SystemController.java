@@ -4,7 +4,6 @@ import com.ujs.boat.Enity.Device;
 import com.ujs.boat.Enity.Log;
 import com.ujs.boat.Enity.Msg;
 import com.ujs.boat.Enity.User;
-import com.ujs.boat.Mapper.MsgMapper;
 import com.ujs.boat.Service.DeviceService;
 import com.ujs.boat.Service.LogService;
 import com.ujs.boat.Service.MsgService;
@@ -86,10 +85,26 @@ public class SystemController {
         return result;
     }
 
+    @GetMapping("/system/device_num_on")
+    @ApiOperation(value = "获取在线船只的数量", notes = "获取在线船只的数量")
+    public GlobalResult device_num_on() {
+        int num =deviceService.num_on();
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
+        return result;
+    }
+
     @GetMapping("/system/user_num")
-    @ApiOperation(value = "查询用户长度", notes = "查询用户数量长度")
+    @ApiOperation(value = "查询全部用户人数", notes = "查询全部用户数量长度")
     public GlobalResult user_num() {
         int num =userService.user_num();
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
+        return result;
+    }
+
+    @GetMapping("/system/user_num_on")
+    @ApiOperation(value = "查询在线用户人数", notes = "查询在线用户数量长度")
+    public GlobalResult user_num_on() {
+        int num =userService.num_on();
         GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
         return result;
     }
@@ -98,6 +113,22 @@ public class SystemController {
     @ApiOperation(value = "查询日志信息长度", notes = "查询日志信息长度")
     public GlobalResult log_num() {
         int num =logService.log_num();
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
+        return result;
+    }
+
+    @GetMapping("/system/log_num_today")
+    @ApiOperation(value = "查询今天日志信息数量", notes = "查询今日日志信息长度")
+    public GlobalResult log_num_today() {
+        int num =logService.log_num_today();
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
+        return result;
+    }
+
+    @GetMapping("/system/msg_num_today")
+    @ApiOperation(value = "查询今天上行数据信息数量", notes = "查询今日上行信息长度")
+    public GlobalResult msg_num_today() {
+        int num =msgService.msg_num_today();
         GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
         return result;
     }
