@@ -31,9 +31,15 @@ public class MsgService {
     /**
      * 查看指定区间的信息
      */
-    public List<Msg> rec_msg(int start, int end){
+    public List<Msg> rec_msg(int start, int limit){
         List<Msg> msg;
-        msg=msgMapper.rec_msg(start,end);
+        msg=msgMapper.rec_msg(start,limit);
         return msg;
+    }
+    /**
+     * 获取信息的长度
+     */
+    public int msg_num(){
+        return msgMapper.msg_num();
     }
 }

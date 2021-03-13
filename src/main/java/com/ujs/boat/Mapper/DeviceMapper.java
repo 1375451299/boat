@@ -33,6 +33,9 @@ public interface DeviceMapper {
     @Update("UPDATE device SET status =#{status}")
     void change_status(@Param("status") String status);
 
-    @Select("SELECT * FROM device LIMIT #{start},#{end}")
-    List<Device> getDevice(@Param("start") int start, @Param("end") int end);
+    @Select("SELECT * FROM device LIMIT #{start},#{limit}")
+    List<Device> getDevice(@Param("start") int start, @Param("limit") int limit);
+
+    @Select("SELECT count(1) FROM device")
+    int device_num();
 }

@@ -55,7 +55,13 @@ public class DeviceService {
     /**
      * 获取所有设备信息
      */
-    public List<Device> devices(int start,int end){
-        return  deviceMapper.getDevice(start,end);
+    public List<Device> devices(int start,int limit){
+        return  deviceMapper.getDevice(start,limit);
+    }
+    /**
+     * 获取船只的数量
+     */
+    public int device_num(){
+        return deviceMapper.device_num();
     }
 }

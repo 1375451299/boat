@@ -2,12 +2,14 @@ package com.ujs.boat.Mapper;
 
 
 
+import com.ujs.boat.Enity.Msg;
 import com.ujs.boat.Enity.User;
 import org.apache.ibatis.annotations.*;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.List;
 
 @Component(value ="userMapper")
 @Mapper
@@ -21,5 +23,11 @@ public interface UserMapper {
 
     @Update("UPDATE user SET LASTVISITTIME =#{lastVisitTime}WHERE Id= #{id}")
     void  updateTime(@Param("id") String id,@Param("lastVisitTime") Date lastVisitTime);
+
+    @Select("SELECT * FROM user LIMIT #{start},#{limit}")
+    List<User> user(@Param("start") int start, @Param("limit") int limit);
+
+    @Select("SELECT count(1) FROM user")
+    int user_num();
 
 }
