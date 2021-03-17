@@ -2,7 +2,6 @@ package com.ujs.boat.Service;
 
 import com.ujs.boat.Enity.Insruction.Times;
 import com.ujs.boat.Enity.Msg;
-import com.ujs.boat.Enity.User;
 import com.ujs.boat.Mapper.MsgMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Timer;
 
 @Service
 public class MsgService {
@@ -66,4 +64,19 @@ public class MsgService {
         String end=" 23:59:59";
         return msgMapper.msg_num_detail(time+start,time+end);
     }
+
+    /**
+     * 依据id返回最近的一条信息
+     * @return
+     */
+    public Msg msg_device_detail(String id){
+        return msgMapper.msg_device_detail(id);
+    }
+    /**
+     * 删除上行信息
+     */
+    public void deletemsg(int row){
+         msgMapper.deletemsg(row);
+    }
+
 }

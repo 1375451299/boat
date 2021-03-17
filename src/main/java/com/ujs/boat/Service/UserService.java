@@ -69,4 +69,18 @@ public class UserService {
     public void update_status(String status,String id){
         userMapper.update_status(status,id);
     }
+    /**
+     * 删除用户
+     */
+    public void deleteByIduser(String id){
+        userMapper.deleteByIduser(id);
+    }
+    /**
+     * 更新用户信息
+     */
+    public void updateById(User user){
+        userMapper.updateById(user.getId(), user.getUser_name(),user.getAge(),user.getSex(),user.getPassword());
+    }
+
+
 }

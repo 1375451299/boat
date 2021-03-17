@@ -1,10 +1,7 @@
 package com.ujs.boat.Mapper;
 
 import com.ujs.boat.Enity.Device;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -44,4 +41,13 @@ public interface DeviceMapper {
 
     @Select("SELECT count(1) FROM device WHERE status =#{status}")
     int num_on(@Param("status") String status);
+
+    @Select("SELECT device_name FROM device WHERE status ='上线'")
+    List<String> device_online();
+
+    @Delete("Delete FROM device WHERE Device_name = #{device_name}")
+    void deleteByIddevice(@Param("device_name") String device_name);
+
+    @Update("UPDATE device SET user_name =#{user_name} WHERE Device_name= #{device_name}")
+    void  updateByIduser(@Param("user_name") String user_name,@Param("device_name") String device_name);
 }

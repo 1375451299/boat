@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Api(tags = "用户操作")
 @RestController
@@ -60,5 +61,60 @@ public class UserController {
                 return result;
             }
         }
+    }
+
+    @PostMapping("/user/user_msg")
+    @ApiOperation(value = "查询用户信息", notes = "依据区间来查询指定长度的用户信息")
+    public GlobalResult user(int start, int end) {
+        int limit=end-start;
+        List<User> user=userService.users(start,limit);
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", user);
+        return result;
+    }
+
+    @PostMapping("/user/deleteByIduser")
+    @ApiOperation(value = "删除用户", notes = "依据id删除用户")
+    public GlobalResult deleteByIduser(String id) {
+        try {
+            userService.deleteByIduser(id);
+            GlobalResult result = GlobalResult.build(200, "删除用户成功", null);
+            return result;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            GlobalResult result = GlobalResult.build(500, "删除用户失败", null);
+            return result;
+        }
+    }
+
+    @PostMapping("/user/updateById")
+    @ApiOperation(value = "更新用户信息", notes = "提交用户表更新信息")
+    public GlobalResult updateById(@RequestBody User user) {
+        try {
+            userService.updateById(user);
+            GlobalResult result = GlobalResult.build(200, "更新用户信息成功", null);
+            return result;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            GlobalResult result = GlobalResult.build(500, "更新用户信息失败", null);
+            return result;
+        }
+    }
+
+    @GetMapping("/user/user_num")
+    @ApiOperation(value = "查询全部用户人数", notes = "查询全部用户数量长度")
+    public GlobalResult user_num() {
+        int num =userService.user_num();
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
+        return result;
+    }
+
+    @GetMapping("/user/user_num_on")
+    @ApiOperation(value = "查询在线用户人数", notes = "查询在线用户数量长度")
+    public GlobalResult user_num_on() {
+        int num =userService.num_on();
+        GlobalResult result = GlobalResult.build(200, "信息查询成功", num);
+        return result;
     }
 }

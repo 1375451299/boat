@@ -27,7 +27,7 @@ public interface UserMapper {
     @Update("UPDATE user SET status =#{status}")
     void change_status(@Param("status") String status);
 
-    @Update("UPDATE user SET status =#{status}  WHERE user_name = #{id}")
+    @Update("UPDATE user SET status =#{status}  WHERE Id = #{id}")
     void update_status(@Param("status") String status,@Param("id") String id);
 
     @Select("SELECT * FROM user LIMIT #{start},#{limit}")
@@ -38,4 +38,12 @@ public interface UserMapper {
 
     @Select("SELECT count(1) FROM user WHERE status =#{status}")
     int num_on(@Param("status") String status);
+
+    @Delete("Delete  FROM user WHERE Id = #{id}")
+    void deleteByIduser(@Param("id") String id);
+
+    @Update("UPDATE user SET user_name =#{user_name}, age =#{age}, sex =#{sex}, Id =#{id}, Password =#{password} WHERE Id= #{id}")
+    void  updateById(@Param("id") String id,@Param("user_name") String user_name,@Param("age") String age,@Param("sex") String sex,@Param("password") String password);
+
+
 }

@@ -7,6 +7,7 @@ import com.ujs.boat.Mapper.LogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.management.LockInfo;
 import java.util.Date;
 import java.util.List;
 
@@ -76,4 +77,23 @@ public class DeviceService {
     public int num_on(){
         return deviceMapper.num_on("上线");
     }
+    /**
+     * 获取在线船只的id
+     */
+    public List<String> device_online(){
+        return deviceMapper.device_online();
+    }
+    /**
+     * 依据船的id删除设备
+     */
+    public void  deleteByIddevice(String device_name){
+        deviceMapper.deleteByIddevice(device_name);
+    }
+    /**
+     * 修改设备主人
+     */
+    public void  updateByIduser(String user_name,String device_name){
+        deviceMapper.updateByIduser(user_name,device_name);
+    }
+
 }

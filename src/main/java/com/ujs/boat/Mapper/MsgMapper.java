@@ -1,15 +1,14 @@
 package com.ujs.boat.Mapper;
 
-import com.ujs.boat.Enity.Device;
 import com.ujs.boat.Enity.Insruction.Times;
 import com.ujs.boat.Enity.Msg;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
 import java.util.List;
 
 @Component(value ="msgMapper")
@@ -33,4 +32,11 @@ public interface MsgMapper {
 
     @Select("SELECT DATE_FORMAT(time, '%Y-%m-%d %H:00:00') AS times, COUNT(*) AS num FROM msg where time BETWEEN #{start} and #{end} GROUP BY times ORDER BY times")
     List<Times> msg_num_detail(@Param("start") String start, @Param("end") String end);
+
+    @Select("SELECT * FROM msg where id=#{id} ORDER BY time DESC LIMIT 1;")
+    Msg msg_device_detail(@Param("id") String id);
+
+    @Delete("Delete FROM msg WHERE line = #{id}")
+    void deletemsg(@Param("id") int id);
+
 }

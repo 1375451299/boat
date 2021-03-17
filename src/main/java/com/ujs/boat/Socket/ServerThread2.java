@@ -57,6 +57,9 @@ public class ServerThread2 extends  Thread {
                     }
                     msgService.insert(rec);
                 }
+                else {
+                    System.out.println("下发指令反馈信息："+msg);
+                }
                 //System.out.println("消息接收完成");
             }
         } catch (Exception e) {

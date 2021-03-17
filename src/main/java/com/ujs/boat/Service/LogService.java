@@ -54,4 +54,10 @@ public class LogService {
         String end=" 23:59:59";
         return logMapper.log_num_detail(time+start,time+end);
     }
+    /**
+     * 删除日志信息
+     */
+    public void deletelog(int row){
+        logMapper.deletelog(row);
+    }
 }

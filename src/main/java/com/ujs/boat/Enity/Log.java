@@ -9,8 +9,7 @@ public class Log {
     private String device_name;
     private String time;
     private String Instruction;
-
-
+    private String line;
 
 
 }

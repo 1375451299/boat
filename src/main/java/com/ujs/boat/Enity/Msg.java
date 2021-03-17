@@ -96,6 +96,10 @@ public class Msg {
      * 时间
      */
     private String time;
+    /**
+     * 行数
+     */
+    private String line;
 
 }
 

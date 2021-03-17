@@ -3,9 +3,7 @@ package com.ujs.boat.Mapper;
 import com.ujs.boat.Enity.Device;
 import com.ujs.boat.Enity.Insruction.Times;
 import com.ujs.boat.Enity.Log;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 
@@ -29,5 +27,8 @@ public interface LogMapper {
 
     @Select("SELECT DATE_FORMAT(time, '%Y-%m-%d %H:00:00') AS times, COUNT(*) AS num FROM log where time BETWEEN #{start} and #{end} GROUP BY times ORDER BY times")
     List<Times> log_num_detail(@Param("start") String start, @Param("end") String end);
+
+    @Delete("Delete  from  log WHERE line = #{rows}")
+    void deletelog(@Param("rows") int rows);
 
 }
