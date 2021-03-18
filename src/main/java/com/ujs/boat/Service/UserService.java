@@ -79,7 +79,7 @@ public class UserService {
      * 更新用户信息
      */
     public void updateById(User user){
-        userMapper.updateById(user.getId(), user.getUser_name(),user.getAge(),user.getSex(),user.getPassword());
+        userMapper.updateById(user);
     }
 
 

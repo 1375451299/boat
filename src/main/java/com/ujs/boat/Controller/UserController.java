@@ -4,7 +4,9 @@ import com.ujs.boat.Enity.User;
 import com.ujs.boat.Service.UserService;
 import com.ujs.boat.common.GlobalResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,7 +91,13 @@ public class UserController {
 
     @PostMapping("/user/updateById")
     @ApiOperation(value = "更新用户信息", notes = "提交用户表更新信息")
-    public GlobalResult updateById(@RequestBody User user) {
+    public GlobalResult updateById(String user_name,String id,String password,String age, String sex) {
+        User user =new User();
+        user.setUser_name(user_name);
+        user.setId(id);
+        user.setPassword(password);
+        user.setAge(age);
+        user.setSex(sex);
         try {
             userService.updateById(user);
             GlobalResult result = GlobalResult.build(200, "更新用户信息成功", null);

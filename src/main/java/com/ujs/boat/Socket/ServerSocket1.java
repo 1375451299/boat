@@ -79,7 +79,7 @@ public class ServerSocket1 {
      * 停船指令
      */
     public void stop(String devicename){
-        send(devicename,"AAA0001:01");
+        send(devicename,"AAA0001:01/n");
     }
     /**
      * 手动控制指令

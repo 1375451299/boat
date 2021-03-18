@@ -15,19 +15,19 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Select("SELECT * FROM user WHERE Id = #{id}")
+    @Select("SELECT * FROM user WHERE id = #{id}")
     User selectById(@Param("id") String id);
 
-    @Insert("INSERT INTO user(user_name,age,sex,createTime,lastVisitTime,Id,password) VALUES(#{user_name},#{age},#{sex},#{createTime},#{lastVisitTime},#{Id},#{password})")
+    @Insert("INSERT INTO user(user_name,age,sex,createTime,lastVisitTime,id,password) VALUES(#{user_name},#{age},#{sex},#{createTime},#{lastVisitTime},#{id},#{password})")
     void insert(User user);
 
-    @Update("UPDATE user SET LASTVISITTIME =#{lastVisitTime}WHERE Id= #{id}")
+    @Update("UPDATE user SET LASTVISITTIME =#{lastVisitTime}WHERE id= #{id}")
     void  updateTime(@Param("id") String id,@Param("lastVisitTime") String lastVisitTime);
 
     @Update("UPDATE user SET status =#{status}")
     void change_status(@Param("status") String status);
 
-    @Update("UPDATE user SET status =#{status}  WHERE Id = #{id}")
+    @Update("UPDATE user SET status =#{status}  WHERE id = #{id}")
     void update_status(@Param("status") String status,@Param("id") String id);
 
     @Select("SELECT * FROM user LIMIT #{start},#{limit}")
@@ -42,8 +42,8 @@ public interface UserMapper {
     @Delete("Delete  FROM user WHERE Id = #{id}")
     void deleteByIduser(@Param("id") String id);
 
-    @Update("UPDATE user SET user_name =#{user_name}, age =#{age}, sex =#{sex}, Id =#{id}, Password =#{password} WHERE Id= #{id}")
-    void  updateById(@Param("id") String id,@Param("user_name") String user_name,@Param("age") String age,@Param("sex") String sex,@Param("password") String password);
+    @Update("UPDATE user SET user_name =#{user_name}, age =#{age}, sex =#{sex}, Password =#{password} WHERE id= #{id}")
+    void  updateById(User user);
 
 
 }
